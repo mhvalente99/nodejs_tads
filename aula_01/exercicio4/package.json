@@ -1,0 +1,14 @@
+{
+  "name": "exercicio4",
+  "version": "1.0.0",
+  "description": "Utilizando express para realizar o controle de rotas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matheus Henrique",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

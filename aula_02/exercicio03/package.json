@@ -1,0 +1,17 @@
+{
+  "name": "exercicio03",
+  "version": "1.0.0",
+  "description": "exercicio 3 terceirao",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wagner",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mysql": "^2.16.0",
+    "mysqls": "0.0.5"
+  }
+}

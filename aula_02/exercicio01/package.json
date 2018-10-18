@@ -1,0 +1,15 @@
+{
+  "name": "exercicio01",
+  "version": "1.0.0",
+  "description": "exercicio 01 - aula 02 - terceirao",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wagner",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
