@@ -1,0 +1,6 @@
+npm install -g vue --save
+npm install -g vue-cli --save
+vue init pwa app
+npm install vuetify --save
+npm install babel-polyfill --save
+npm run dev
