@@ -4,6 +4,13 @@ const bodyParser = require('body-parser')
 const server = express()
 server.use(bodyParser.json())
 
+server.use(function(req, res, next){
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Resquested-With, Content-Type, Accept")
+    res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS")
+    next()
+})
+
 const bd = require('./app/config/bd.config')
 
 bd.connection.sync({force: false}).then(() => {
