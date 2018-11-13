@@ -7,3 +7,7 @@ npm run dev
 
 npm install axios --save
 npm install vue-axios --save
+
+O que esta no props nao pode estar no data
+xs8 centraliza
+$emit passa os dados para o modal
