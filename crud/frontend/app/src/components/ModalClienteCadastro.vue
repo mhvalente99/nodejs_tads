@@ -18,7 +18,7 @@
               {{ alertConfig.alertMessage }}
             </v-alert>
             <v-form v-model="valid" ref="form" lazy-validation>
-              <v-text-field v-model="cliente.id" label="ID" disabled />
+              <v-text-field v-model="cliente.codigo" label="ID" disabled />
               <v-text-field v-model="cliente.nome" label="Nome"/>
               <v-text-field v-model="cliente.telefone" label="Telefone"/>
               <v-text-field v-model="cliente.email" label="E-mail"/>
@@ -48,7 +48,7 @@ export default {
         ]
       },
       cliente: {
-        id: '',
+        codigo: '',
         nome: '',
         telefone: '',
         email: '',
@@ -69,27 +69,82 @@ export default {
     close (val) {
       this.$emit('cliente', val)
     },
+    limpar () {
+      this.cliente = {
+        codigo: '',
+        nome: '',
+        telefone: '',
+        email: '',
+        situacao: 'A'
+      }
+
+      this.form = Object.assign({}, this.cliente)
+      this.$refs.form.reset()
+    },
     salvarCliente () {
-      this
-        .axios
-        .post('clientes', this.cliente)
-        .then( (success) => {
-          this.alertConfig = {
-            alertMessage: 'Cadastrado com sucesso',
-            alertVisible: true,
-            alertIcon: 'check_circle',
-            alertType: 'success',
-            alertDismissible: true
+      if (this.$refs.form.validate()) {
+        if (!this.cliente.codigo) {
+          this
+            .axios
+            .post('clientes', this.cliente)
+            .then( (success) => {
+              this.alertConfig = {
+                alertMessage: 'Cadastrado com sucesso',
+                alertVisible: true,
+                alertIcon: 'check_circle',
+                alertType: 'success',
+                alertDismissible: true
+              }
+
+              this.limpar()
+            })
+            .catch( (error) => {
+              this.alertConfig = {
+                alertMessage: 'Erro ao salvar ' + error,
+                alertVisible: true,
+                alertIcon: 'error',
+                alertType: 'error',
+                alertDismissible: true
+              }
+            })
           }
-        })
-        .catch( (error) => {
-          alert(error)
-        })
+          else {
+            this
+              .axios
+              .put('clientes/' + this.cliente.codigo, this.cliente)
+              .then( () => {
+                this.alertConfig = {
+                  alertMessage: 'Alterado com sucesso',
+                  alertVisible: true,
+                  alertIcon: 'check_circle',
+                  alertType: 'success',
+                  alertDismissible: true
+                }
+
+                this.limpar()
+              })
+              .catch( (error) => {
+                this.alertConfig = {
+                  alertMessage: 'Erro ao salvar ' + error,
+                  alertVisible: true,
+                  alertIcon: 'error',
+                  alertType: 'error',
+                  alertDismissible: true
+                }
+              })
+          }
+      }
     }
   },
   props: [
-    'modal'
-  ]
+    'modal',
+    'registro'
+  ],
+  watch: {
+    registro: function (val) {
+      if (val !== '') this.cliente = val
+    }
+  }
 }
 </script>
 
